@@ -1,5 +1,11 @@
-<div class="headline"
+<div class="headline hiddenOnLoad"
     data-resources="[{paths: ['components/headline/styles/headline.css', 'components/headline/headline.js']}]"
-    data-init="((element) => {window.biotope.Header(element)})">
-    Hello World!
+    data-init="((element) => {
+        window.biotope.Headline(element);
+        element.classList.remove('hiddenOnLoad')
+    })">
+    <div class="headline__headlineUpper">Hello World!</div>
+    <div class="headline__quad"></div>
+    <div class="headline__headlineLower">Hello World!</div>
+    <div class="block"></div>
 </div>

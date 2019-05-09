@@ -1,9 +1,10 @@
 interface HeadlineOptions {}
 
 class Headline {
-	private element: Element;
+	private element: any;
 	private options: HeadlineOptions;
-	private defaults: HeadlineOptions = {};
+    private defaults: HeadlineOptions = {};
+    private quad: HTMLElement;
 	constructor(element: Element, options: HeadlineOptions) {
 		this.element = element;
 		// ⚠️ remove options if you don't use them
@@ -12,8 +13,13 @@ class Headline {
 		this.init();
 	}
 	private init() {
-       // var simon: string = 'Entwickler';
-        console.log('component initialized');
+        // var simon: string = 'Entwickler';
+        // this.element.style.color = 'lime';
+        this.quad = this.element.querySelector('.headline__quad');
+     
+        this.quad.innerHTML = 'i am a gradient';
+        
+        
 	}
 }
 

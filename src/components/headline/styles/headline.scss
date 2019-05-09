@@ -1,4 +1,39 @@
 .headline {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     font-size: 30px;
-    color: plum;
+    color: lime;
+
+    &__headlineUpper {
+        align-self: flex-start;
+        flex: 1 1 auto;
+    }
+
+    &__quad {
+        background-image: linear-gradient(0deg, papayawhip, palegreen );
+        color: white;
+        flex: 1 1 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__headlineLower {
+        align-self: flex-end;
+        flex: 1 1 auto;
+        transform: rotateZ(180deg);
+    }
 }
+
+.block {
+    background-color: red;
+    width: 100%;
+    height: 50px;
+}
+
+
+.hiddenOnLoad {
+    display: none;
+}
+
