@@ -1,11 +1,16 @@
-interface AccordionOptions {}
+interface AccordionOptions {
+	APILink: string
+}
 
 class Accordion {
 	private element: Element;
 	private options: AccordionOptions;
-	private defaults: AccordionOptions = {};
+	private defaults: AccordionOptions = {
+		APILink: 'https://baconipsum.com/api/?type=meat-and-filler?format=text'
+	};
 	private accordionSections: HTMLElement[];
 	private textBox: HTMLElement[];
+	private biotope: any = (<any>window).biotope;
 	constructor(_element: Element, options: AccordionOptions) {
 		this.element = _element;
 		// ⚠️ remove options if you don't use them
@@ -15,30 +20,27 @@ class Accordion {
 		};
 		// init plugin
 		this.init();
-		this.setupEvents();
 	}
 
 	private init() {
-		var self = this;
-
-		fetch('https://baconipsum.com/api/?type=meat-and-filler?format=text').then(function (response) {
+		console.log(this.options);
+		fetch(this.options.APILink || this.biotope.configuration.get('global.APILink')||'https://baconipsum.com/api/?type=meat-and-filler?format=text').then((response) => {
 			return response.json();
-		}).then(function (json) {
+		}).then((json) => {
 			var text: string = JSON.stringify(json);
-
-			self.textBox = Array.prototype.slice.call(self.element.querySelectorAll('.accordion__textBox'));
-			self.textBox.forEach(e => e.innerHTML = text);
-
+			this.textBox = Array.prototype.slice.call(this.element.querySelectorAll('.accordion__textBox'));
+            this.textBox.forEach(e => e.innerHTML = text);
+            this.textBox[this.textBox.length - 1].parentElement.style.borderBottom = '1px solid black';
 		});
+		this.setupEvents();
+
 	}
 
 	private setupEvents() {
 		this.accordionSections = [].slice.call(this.element.querySelectorAll('.accordion__sectionContainer'));
 		this.accordionSections.forEach(e => e.addEventListener('click', (event) => {
-			console.log(e);
 			if (e.classList.contains('accordion__sectionContainer--toggled')) {
 				e.classList.remove('accordion__sectionContainer--toggled');
-				console.log("hey");
 			} else {
 				this.accordionSections.forEach((e) => {
 					e.classList.remove('accordion__sectionContainer--toggled');

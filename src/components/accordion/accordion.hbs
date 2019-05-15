@@ -1,7 +1,8 @@
 <div class="accordion hiddenOnLoad"
     data-resources="[{paths: ['components/accordion/styles/accordion.css', 'components/accordion/accordion.js']}]"
     data-init="((element) => {
-        window.biotope.Accordion(element);
+        window.biotope.Accordion(element, {second: 'something', 
+        APILink: 'https://baconipsum.com/api/?type=meat-and-filler?format=text'});
         element.classList.remove('hiddenOnLoad')
     })">
     <div class="accordion__sectionContainer">
