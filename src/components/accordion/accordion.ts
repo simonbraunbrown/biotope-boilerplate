@@ -23,33 +23,55 @@ class Accordion {
 	}
 
 	private init() {
+		this.fetchText();
+		this.setupEvents();
+	}
+
+	private fetchText () {
 		console.log(this.options);
 		fetch(this.options.APILink || this.biotope.configuration.get('global.APILink')||'https://baconipsum.com/api/?type=meat-and-filler?format=text').then((response) => {
 			return response.json();
 		}).then((json) => {
 			var text: string = JSON.stringify(json);
 			this.textBox = Array.prototype.slice.call(this.element.querySelectorAll('.accordion__textBox'));
-            this.textBox.forEach(e => e.innerHTML = text);
-            this.textBox[this.textBox.length - 1].parentElement.style.borderBottom = '1px solid black';
+            //this.textBox.forEach(e => e.innerHTML = text);
 		});
-		this.setupEvents();
-
 	}
 
 	private setupEvents() {
-		this.accordionSections = [].slice.call(this.element.querySelectorAll('.accordion__sectionContainer'));
+		this.accordionSections = [].slice.call(this.element.querySelectorAll('.accordion__itemContainer'));
 		this.accordionSections.forEach(e => e.addEventListener('click', (event) => {
-			if (e.classList.contains('accordion__sectionContainer--toggled')) {
-				e.classList.remove('accordion__sectionContainer--toggled');
+			if (e.classList.contains('accordion__itemContainer--open')) {
+				this.closeItem(e);
 			} else {
 				this.accordionSections.forEach((e) => {
-					e.classList.remove('accordion__sectionContainer--toggled');
+					this.closeItem(e);
 				});
-				if (e.className == 'accordion__sectionContainer') {
-					e.classList.add('accordion__sectionContainer--toggled');
+				if (e.className == 'accordion__itemContainer') {
+					this.openItem(e);
 				}
 			}
 		}));
+
+		// function openItem(_element : Element) {
+		// 	var e = _element;
+		// 	e.classList.add('accordion__itemContainer--open');
+		// }
+
+		// function closeItem(_element : Element) {
+		// 	var e = _element;
+		// 	e.classList.remove('accordion__itemContainer--open');
+		// }
+	}
+
+	private openItem(_element : Element) {
+		var e = _element;
+		e.classList.add('accordion__itemContainer--open');
+	}
+
+	private closeItem(_element : Element) {
+		var e = _element;
+			e.classList.remove('accordion__itemContainer--open');
 	}
 }
 

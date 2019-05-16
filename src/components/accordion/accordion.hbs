@@ -5,34 +5,12 @@
         APILink: 'https://baconipsum.com/api/?type=meat-and-filler?format=text'});
         element.classList.remove('hiddenOnLoad')
     })">
-    <div class="accordion__sectionContainer">
-        <div class="accordion__sectionHeadline">click me</div>
-        <div class="accordion__sectionContent">
-            <p class="accordion__textBox"></p>
+    {{#each accordion.accordionItems}}
+        <div class="accordion__itemContainer">
+            <div class="accordion__headline">{{headline}}</div>
+            <div class="accordion__content">
+                <p class="accordion__textBox">{{text}}</p>
+            </div>
         </div>
-    </div>
-    <div class="accordion__sectionContainer">
-        <div class="accordion__sectionHeadline">click me</div>
-        <div class="accordion__sectionContent">
-            <p class="accordion__textBox"></p>
-        </div>
-    </div>
-    <div class="accordion__sectionContainer">
-        <div class="accordion__sectionHeadline">click me</div>
-        <div class="accordion__sectionContent">
-            <p class="accordion__textBox"></p>
-        </div>
-    </div>
-    <div class="accordion__sectionContainer">
-        <div class="accordion__sectionHeadline">click me</div>
-        <div class="accordion__sectionContent">
-            <p class="accordion__textBox"></p>
-        </div>
-    </div>
-    <div class="accordion__sectionContainer">
-        <div class="accordion__sectionHeadline">click me</div>
-        <div class="accordion__sectionContent">
-            <p class="accordion__textBox"></p>
-        </div>
-    </div>
+    {{/each}}
 </div>

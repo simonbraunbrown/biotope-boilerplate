@@ -47,5 +47,9 @@ import ResourceLoader from '@biotope/resource-loader/lib/index.esm';
         init();
     }, 1000)
 
+    window.addEventListener('resourcesReady', () => {
+        init();
+    });
+
     setupResourceLoader();
 };
