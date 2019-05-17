@@ -1,0 +1,58 @@
+$color: rgba(214, 214, 214, 0);
+
+
+
+.filterList {
+
+    &__wrapper {
+        width: 80%;
+        margin: 0 auto;
+        background-color: rgba($color, $alpha: 1.0);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    &__textInput {
+        order: 1;
+        flex: 1 1 auto;
+    }
+
+    &__display {
+        order: 2;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+
+    &__item {
+        border: 1px solid black;
+        padding: 10px;
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__itemName {
+        font-size: 20px;
+        font-weight: bold;
+        flex: 1 1 100%;
+    }
+
+    &__itemDetails {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        flex: 1 1 100%;
+
+    }
+
+    &__itemDetail {
+        font-size: 15px;
+    }
+}
