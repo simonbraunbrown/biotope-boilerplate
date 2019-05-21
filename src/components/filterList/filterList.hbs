@@ -1,23 +1,27 @@
 <div class="filterList"
-data-resources="[{paths: ['components/filterList/styles/filterList.css', 'components/filterList/filterList.js']}]"
-data-init="((element) => {
+    data-resources="[{paths: ['components/filterList/styles/filterList.css', 'components/filterList/filterList.js']}]"
+    data-init="((element) => {
     window.biotope.FilterList(element);
 })">
-<div class="filterList__wrapper">
-    <input class="filterList__textInput" type="text">
-    <input type="radio">
-    <input type="radio">
-<div class="filterList__display">
-    {{#each personalities.personalData}}
-    <div class="filterList__item">
-        <div class="filterList__itemName">{{name.first}} {{name.last}}</div>
-        <div class="filterList__itemDetails">
-            <div class="filterList__itemDetail">{{age}}</div>
-            <div class="filterList__itemDetail">{{eyeColor}}</div>
-            <div class="filterList__itemDetail">{{company}}</div>
+    <div class="filterList__wrapper">
+        <div class="filterList__interface">
+            <label for="textInput">enter text here</label>
+            <input class="filterList__textInput" type="text" id="textInput">
+            <label for="ageRangeSlider">filter by age from<span class="filterList__ageRangeSliderValue"> 0</span> to 100</label>
+            <input class="filterList__ageRangeSlider" type="range" id="ageRangeSlider" min="1" max="100" value="1">
+            <div class="filterList__sortButton">sort</div>
+        </div>
+        <div class="filterList__display">
+            {{!-- {{#each personalities.personalData}}
+            <div class="filterList__item">
+                <div class="filterList__itemName">{{name.first}} {{name.last}}</div>
+                <div class="filterList__itemDetails">
+                    <div class="filterList__itemDetail">{{age}}</div>
+                    <div class="filterList__itemDetail">{{eyeColor}}</div>
+                    <div class="filterList__itemDetail">{{company}}</div>
+                </div>
+            </div>
+            {{/each}} --}}
         </div>
     </div>
-    {{/each}}
-</div>
-</div>
 </div>

@@ -13,9 +13,30 @@ $color: rgba(214, 214, 214, 0);
         flex-wrap: wrap;
     }
 
+    &__interface {
+        width: 80%;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center
+    }
+
     &__textInput {
-        order: 1;
+        width: 80%;
         flex: 1 1 auto;
+    }
+
+    &__ageRangeSlider {
+        width: 50%;
+        flex: 1 1 50%;
+    }
+
+    &__sortButton {
+        margin: 5px;
+        border: 1px solid black;
+        width: 50px;
+        text-align: center;
     }
 
     &__display {

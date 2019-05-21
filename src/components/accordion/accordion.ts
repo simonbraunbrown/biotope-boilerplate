@@ -40,28 +40,21 @@ class Accordion {
 
 	private setupEvents() {
 		this.accordionSections = [].slice.call(this.element.querySelectorAll('.accordion__itemContainer'));
-		this.accordionSections.forEach(e => e.addEventListener('click', (event) => {
-			if (e.classList.contains('accordion__itemContainer--open')) {
-				this.closeItem(e);
-			} else {
-				this.accordionSections.forEach((e) => {
-					this.closeItem(e);
-				});
-				if (e.className == 'accordion__itemContainer') {
-					this.openItem(e);
-				}
-			}
+		this.accordionSections.forEach(e => e.addEventListener('click', () => {
+			this.toggle(e);
 		}));
-
-		// function openItem(_element : Element) {
-		// 	var e = _element;
-		// 	e.classList.add('accordion__itemContainer--open');
-		// }
-
-		// function closeItem(_element : Element) {
-		// 	var e = _element;
-		// 	e.classList.remove('accordion__itemContainer--open');
-		// }
+	}
+	private toggle(accordionItem : Element){
+		if (accordionItem.classList.contains('accordion__itemContainer--open')) {
+			this.closeItem(accordionItem);
+		} else {
+			this.accordionSections.forEach((e) => {
+				this.closeItem(e);
+			});
+			if (accordionItem.className == 'accordion__itemContainer') {
+				this.openItem(accordionItem);
+			}
+		}
 	}
 
 	private openItem(_element : Element) {
