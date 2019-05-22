@@ -1,5 +1,7 @@
-$color: rgba(214, 214, 214, 0);
-$gradient: linear-gradient(315deg, rgba(19, 79, 207, 0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, #FA5A5A 0%, #FF2F2F 100%);
+$color: rgba(0, 0, 0, 0.3);
+$red: #fb4934;
+$blue: #83a598;
+$gradient: linear-gradient(315deg, rgba($blue, 0.5) 0%, rgba(255,255,255,0) 100%), linear-gradient(315deg, #FA5A5A 0%, #FF2F2F 100%);
 
 
 
@@ -50,6 +52,21 @@ $gradient: linear-gradient(315deg, rgba(19, 79, 207, 0.5) 0%, rgba(255,255,255,0
         }
     }
 
+    &__checkBox {
+        margin: 5px;
+        text-align: center;
+        border: 1px solid black;
+        &:first-child {
+            background-color: #98971a;
+        }
+        &:nth-child(2) {
+            background-color: #458588;
+        }
+        &:nth-child(3){
+            background-color:#b57614;
+        }
+    }
+
     &__sortButton {
         margin: 5px;
         border: 1px solid black;
@@ -93,5 +110,8 @@ $gradient: linear-gradient(315deg, rgba(19, 79, 207, 0.5) 0%, rgba(255,255,255,0
 
     &__itemDetail {
         font-size: 15px;
+    }
+    .hl {
+    background: $color;
     }
 }

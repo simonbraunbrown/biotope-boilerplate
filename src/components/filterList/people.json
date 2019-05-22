@@ -703,6 +703,15 @@
 			},
 			"company": "ZEDALIS",
 			"address": "963 Radde Place, Northridge, New Jersey, 129"
-		  }
+			},
+			{
+				"age" : 31,
+				"eyeColor" : "brown",
+				"name": {
+					"first": "Simon",
+					"last": "Braun"
+				},
+				"company": "BROWNINC"
+			}
 	]
 }
