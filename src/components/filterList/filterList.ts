@@ -19,7 +19,12 @@ class FilterList {
 	private defaults: FilterListOptions = {};
 	private filterValues = {
 		textinput: '',
-		ageSlider: 1
+		ageSlider: 0,
+		eyeColors: {
+			green: false,
+			blue: false,
+			brown: false
+		}
 	}
 	private inputListSource: string = './components/filterList/people.json';
 	private inputList: Array<People> = [];
@@ -55,7 +60,7 @@ class FilterList {
 			const slider = <HTMLInputElement>event.target;
 			this.filterValues.ageSlider = parseInt(slider.value);
 			this.filterList(this.inputList);
-			this.element.querySelector('.filterList__ageRangeSliderValue').innerHTML = 'filter by age from ' + this.filterValues.ageSlider + ' to 100';
+			this.element.querySelector('.filterList__ageRangeSliderValue').innerHTML = 'filter by age from ' + this.filterValues.ageSlider + ' to 100 years';
 		});
 
 		const searchInput = this.element.querySelector('.filterList__textInput');
@@ -70,6 +75,22 @@ class FilterList {
 			this.filterValues.textinput = text.value;
 			this.filterList(this.inputList);
 		});
+
+		const eyeColorButtons = Array.prototype.slice.call(this.element.querySelectorAll('.filterList__checkBox')); // Why not with [...] or Array.from()
+		eyeColorButtons.forEach(el => el.addEventListener('click', event => {
+			if (event.target == eyeColorButtons[0]) {
+				eyeColorButtons[0].classList.toggle('filterList__checkBox--clicked');
+				this.filterValues.eyeColors.green = !this.filterValues.eyeColors.green;
+			} else if (event.target == eyeColorButtons[1]) {
+				eyeColorButtons[1].classList.toggle('filterList__checkBox--clicked');
+				this.filterValues.eyeColors.blue = !this.filterValues.eyeColors.blue;
+			} else if (event.target == eyeColorButtons[2]) {
+				eyeColorButtons[2].classList.toggle('filterList__checkBox--clicked');
+				this.filterValues.eyeColors.brown = !this.filterValues.eyeColors.brown;
+			}
+			this.filterList(this.inputList);
+			console.log(this.filterValues.eyeColors);
+		}))
 	}
 
 
@@ -78,6 +99,7 @@ class FilterList {
 		console.log(this.filterValues.ageSlider);
 		listToFilter = this.filterByAge(listToFilter, this.filterValues.ageSlider);
 		listToFilter = this.filterByName(listToFilter, this.filterValues.textinput);
+		listToFilter = this.filterByEyeColor(listToFilter, this.filterValues.eyeColors)
 		this.renderResults(listToFilter);
 	}
 
@@ -92,11 +114,34 @@ class FilterList {
 
 
 	private filterByName(unsortedList: Array<People>, name: string) {
-			const regex = new RegExp(name, 'gi');
-			
-			return unsortedList.filter((item) => {
-				return item.name.first.match(regex) || item.name.last.match(regex)
-			});
+		const regex = new RegExp(name, 'gi');
+
+		return unsortedList.filter((item) => {
+			return item.name.first.match(regex) || item.name.last.match(regex)
+		});
+	}
+
+	private filterByEyeColor(unsortedList: Array<People>, colorToggled: { green: boolean, blue: boolean, brown: boolean }) {
+		console.log(colorToggled);
+		if (colorToggled.green && colorToggled.blue && colorToggled.brown) {
+			return unsortedList;
+		}
+		else if (colorToggled.green && colorToggled.blue) {
+			return unsortedList.filter((item) => item.eyeColor !== 'brown');
+		} else if (colorToggled.green && colorToggled.brown) {
+			return unsortedList.filter((item) => item.eyeColor !== 'blue');
+		}else if (colorToggled.blue && colorToggled.brown) {
+			return unsortedList.filter((item) => item.eyeColor !== 'green');
+		}else if (colorToggled.green) {
+			return unsortedList.filter((item) => item.eyeColor === 'green');
+		} else if (colorToggled.blue) {
+			return unsortedList.filter((item) => item.eyeColor === 'blue');
+		} else if (colorToggled.brown) {
+			return unsortedList.filter((item) => item.eyeColor === 'brown');
+		}  
+		else {
+			return unsortedList;
+		}
 	}
 
 	private renderResults(filteredList: Array<People>) {
@@ -107,9 +152,9 @@ class FilterList {
 		let listItems = '';
 		filteredList.forEach(item => {
 
-			 const regex = new RegExp('('+this.filterValues.textinput+')', 'gi');
-			 let _matchName = item.name.first + ' ' + item.name.last;
-			 const matchName = _matchName.replace(regex,'<span class="hl">$1</span>');
+			const regex = new RegExp('(' + this.filterValues.textinput + ')', 'gi');
+			let _matchName = item.name.first + ' ' + item.name.last;
+			const matchName = _matchName.replace(regex, '<span class="hl">$1</span>');
 
 			let newItem = filterItemTpl({
 				name: item.name.first + ' ' + item.name.last,
@@ -118,16 +163,14 @@ class FilterList {
 				eyeColor: item.eyeColor,
 				company: item.company
 			})
-			//console.log(newItem);
 
 			listItems += newItem;
-			
+
 		});
 		const itemDisplayBox = document.querySelector('.filterList__display');
 		itemDisplayBox.innerHTML = listItems;
 
 	}
-
 
 	private getEyeColor() {
 		const eyes = [];
@@ -141,7 +184,7 @@ class FilterList {
 
 			return sum + people.age
 		}, 0);
-		
+
 
 	}
 }
