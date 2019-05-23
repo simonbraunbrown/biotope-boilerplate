@@ -1,0 +1,32 @@
+<div class="filterList"
+    data-resources="[{paths: ['components/filterList/styles/filterList.css', 'components/filterList/filterList.js']}]"
+    data-init="((element) => {
+    window.biotope.FilterList(element);
+})">
+    <div class="filterList__wrapper">
+        <div class="filterList__interface">
+            <label for="textInput">enter text here</label>
+            <input class="filterList__textInput" type="text" id="textInput">
+            <label class="filterList__ageRangeSliderValue" for="filterList__ageRangeSlider">filter by age from<span > 0</span> to 100 years</label>
+            <input class="filterList__ageRangeSlider" type="range" id="ageRangeSlider" min="1" max="100" value="1">
+            <div class="filterList__checkBoxContainer">
+                <div class="filterList__checkBox">green</div>
+                <div class="filterList__checkBox">blue</div>
+                <div class="filterList__checkBox">brown</div>
+            </div>
+            <div class="filterList__sortButton">sort</div>
+        </div>
+        <div class="filterList__display">
+            {{!-- {{#each personalities.personalData}}
+            <div class="filterList__item">
+                <div class="filterList__itemName">{{name.first}} {{name.last}}</div>
+                <div class="filterList__itemDetails">
+                    <div class="filterList__itemDetail">{{age}}</div>
+                    <div class="filterList__itemDetail">{{eyeColor}}</div>
+                    <div class="filterList__itemDetail">{{company}}</div>
+                </div>
+            </div>
+            {{/each}} --}}
+        </div>
+    </div>
+</div>

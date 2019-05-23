@@ -1,0 +1,16 @@
+<div class="accordion hiddenOnLoad"
+    data-resources="[{paths: ['components/accordion/styles/accordion.css', 'components/accordion/accordion.js']}]"
+    data-init="((element) => {
+        window.biotope.Accordion(element, {second: 'something', 
+        APILink: 'https://baconipsum.com/api/?type=meat-and-filler?format=text'});
+        element.classList.remove('hiddenOnLoad')
+    })">
+    {{#each accordion.accordionItems}}
+        <div class="accordion__itemContainer">
+            <div class="accordion__headline">{{headline}}</div>
+            <div class="accordion__content">
+                <p class="accordion__textBox">{{text}}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>

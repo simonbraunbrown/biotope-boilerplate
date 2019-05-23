@@ -4,11 +4,15 @@ module.exports = {
 		externalResources: {
 			'vi-css-helper': ['helper.css', 'print.css'],
 			'sanitize.css': 'sanitize.css',
-			'handlebars': 'dist/handlebars.runtime.js'
+			'handlebars': 'dist/handlebars.runtime.js',
+			'@biotope/resource-loader': 'src/resourceLoader.js'
 		},
 		tsEntryPoints: [
 			'resources/ts/**/*.ts',
 			'components/**/*.ts'
 		]
+	},
+	webpack: {
+		watchScss: true
 	}
 };

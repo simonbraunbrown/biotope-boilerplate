@@ -21,3 +21,6 @@ biotope.configuration.data.global = biotope.configuration.data.global || {};
 //// i18n
 biotope.configuration.data.i18n = biotope.configuration.data.i18n || {};
 biotope.configuration.data.i18n.browserwarning = 'Ihr Browser ist veraltet! Die Seite wird möglicherweise in Funktionalität und Darstellung eingeschränkt sein.';
+
+////Accordion
+biotope.configuration.data.global.APILink = 'https://baconipsum.com/api/?type=meat-and-filler?format=text';

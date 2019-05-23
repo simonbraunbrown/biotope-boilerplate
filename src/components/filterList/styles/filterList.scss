@@ -1,0 +1,135 @@
+$color: rgba(0, 0, 0, 0.3);
+$red: #fb4934;
+$blue: #83a598;
+$gradient: linear-gradient(315deg, rgba($blue, 0.5) 0%, rgba(255, 255, 255, 0) 100%),
+linear-gradient(315deg, #FA5A5A 0%, #FF2F2F 100%);
+
+
+
+.filterList {
+
+	&__wrapper {
+		width: 80%;
+		margin: 0 auto;
+		//background-color: rgba($color, $alpha: 1.0);
+		background-image: $gradient;
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	&__interface {
+		order: 1;
+		width: 100%;
+		margin: 20px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+        align-items: center;
+        & input {
+            box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
+        }
+	}
+
+	&__textInput {
+		width: 80%;
+		flex: 1 1 auto;
+		border-radius: 10px;
+		border: none;
+        outline: none;
+	}
+
+	&__ageRangeSlider {
+		-webkit-appearance: none;
+		width: 50%;
+		height: 25px;
+		flex: 1 1 50%;
+		outline: none;
+		border-radius: 10px;
+
+		&::-webkit-slider-thumb {
+			-webkit-appearance: none;
+			width: 25px;
+			height: 25px;
+			border-radius: 25px;
+			background-image: $gradient;
+		}
+	}
+
+	&__checkBox {
+        margin: 5px;
+        padding: 5px;
+		text-align: center;
+        border: 1px solid black;
+        box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
+        user-select: none;
+        background-color: rgba(255, 255, 255, 0);
+        transition: all 0.3s ease;
+        
+        &--clicked  {
+			&:first-child {
+                background-color: #98971a;
+                box-shadow: 0 0 100px 3px rgba(#98971a, 0.8);
+			}
+
+			&:nth-child(2) {
+                background-color: #458588;
+                box-shadow: 0 0 100px 3px rgba(#458588, 0.8);
+			}
+
+			&:nth-child(3) {
+                background-color: #b57614;
+                box-shadow: 0 0 100px 3px rgba(#b57614, 0.8);
+			}
+		}
+	}
+
+	&__sortButton {
+		margin: 5px;
+		border: 1px solid black;
+		width: 50px;
+		text-align: center;
+	}
+
+	&__display {
+		order: 2;
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+
+	&__item {
+		border: 1px solid black;
+		padding: 10px;
+		flex: 1 1 auto;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	&__itemName {
+		font-size: 20px;
+		font-weight: bold;
+		flex: 1 1 100%;
+	}
+
+	&__itemDetails {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		flex: 1 1 100%;
+
+	}
+
+	&__itemDetail {
+		font-size: 15px;
+	}
+
+	.hl {
+		background: $color;
+	}
+}

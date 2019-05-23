@@ -2,6 +2,7 @@ import ResourceLoader from '@biotope/resource-loader/lib/index.esm';
 
 {
     const init = () => {
+
         const elementsWithDataInit: HTMLElement[] = [].slice.call(document.querySelectorAll('[data-init]'));
         elementsWithDataInit.forEach((element: HTMLElement) => {
             const initFunction = eval(element.dataset.init);
@@ -42,8 +43,13 @@ import ResourceLoader from '@biotope/resource-loader/lib/index.esm';
         });
     }
 
+    setTimeout(() => {
+        init();
+    }, 1000)
+
     window.addEventListener('resourcesReady', () => {
         init();
     });
+
     setupResourceLoader();
 };
